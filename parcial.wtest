@@ -1,0 +1,37 @@
+import parcial.*
+
+describe "a" {
+  //trabajo
+  const ingeniero = new Trabajo(salario = 3000, trabajadores = [])
+  //persona
+  const lionel = new Persona(
+    pagoPreferido = efectivo,
+    cuentasBancarias = rio,
+    trabajo = ingeniero,
+    tarjetasCredito = mastercard,
+    saldo = 500
+  )
+  //tarjeta,banco,cuenta
+  const mastercard = new TarjetaDeCredito(cuotas = 12, bancoEmisor = rio)
+  const rio = new BancoEmisor(tasaInteres = 0.5, maximoPermitido = 5000)
+  const cuenta1 = new CuentaBancaria(saldo = 3000)
+  //objeto
+    const heladera = new Cosa(precio = 300)
+
+
+  test "cobrar sueldo" {
+    mes.agregarPersona(lionel)
+    ingeniero.agregarTrabajador(lionel)
+    ingeniero.pagarSalario()
+    assert.equals(3000, lionel.saldo())
+        //cobro sueldo
+  }
+
+  test "pagarConTarjeta"{
+ /* al pagar con su tarjeta de credito el costo inicial es de 300, pero las cuotas son de 12
+ entonces cada cuota es 300/12 = 25 cada cuota, pero a esto hay que sumarle el precio del objeto(300) * el interes (0.5) , 
+ por lo que termina siendo de 175 la cuota (carisimo)*/ 
+    lionel.tarjetasCredito().pagar(heladera)
+    assert.equals(4825, mastercard.saldo())
+  }
+} //7 hacer test de una compra en cuotas otro de cobro de sueldo
